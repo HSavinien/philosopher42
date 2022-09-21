@@ -1,0 +1,36 @@
+thread, like forks, are a way of doing parallele processing (executing multiple task at once). while fork are realy good at spliting a program to do two diferent task at the same time, threads are more useful when the task they do is a part of the main task. they comunicate easily between each other, and are faster to create and destroy.
+
+in C :
+we use pthread.h (POSIX thread), as thread are not native in C.
+
+creating a thread :
+	each thread must have an id, stored in a object of type pthread_t. for use in multiple thread, an array is recomended.
+	int	pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg); create a thread which will execute "start_routine". It return the exit status of the routine.
+	arguments are, in order :
+		- the thread ID, passed by reference. see above for details.
+		- a struct for the attribute of the thread (stack_size, priority...). NULL, for default settings, shall sufice.
+		- the affordmentioned routine
+		- the argument one want to give to the routine (just like mlx_hook functions)
+	this function must be called to creat each thread.
+	
+	to exit the routine, you can use the pthread_exit function, or simply exit the function normaly. pthread_exit take a void* by reference, and change it's value to the thread exit status. (pthread_exit is not alowed for philosopher)
+useful function :
+	- int pthread_join(pthread_t thread, void **value_ptr);
+		order a thread to wait for another thread. arguments are :
+			* the ID of the thread we want to wait;
+			* a reference to the thread return value;
+		it return 0 if successful, non_zero else
+	- int pthread_detach(pthread_t thread)
+		basicaly a big ass free : tell the program to reclaim the specified thread memory when the thread exit. can be called from any thread, before or after the thread end.
+
+
+
+
+mutex :
+	the greate strengh of thread is also their weakness. sharing memory mean several thread can access to the same variable, even in writing, at the same time. it can cause a lot of problem, like a value having changed between the time it's read and the time it's used. mutex allow to lock a ressource for a time.
+
+	to create a mutex, first steep is to create a pthread_mutex_t var and initialise it with PTHREAD_MUTEXINITIALISER. it can be a good idea to set it as static, as it will often be in function called several time.
+	this mutex can then be either locked, or unlocked. state is changed with 
+		int pthread_mutex_lock (pthread_mutex_t * mutex);
+		int pthread_mutex_unlock (pthread_mutex_t * mutex);
+	the first one show the start of a critical zone. the second end the critical zone. both take the addresse of a mutex var as arg, and return 0 on success and >0 on failure. of course, one muste never forget to unlock a thread before the end of the thread. else, the thread stay locked ad vitam eternam.

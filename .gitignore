@@ -1,0 +1,10 @@
+philosopher
+philosopher-debug
+philosopher-sanitize
+*.dSYM
+*test*
+*.o
+*.a
+*.swp
+*.swo
+a.out

@@ -1,0 +1,27 @@
+main code :
+parse user entry. store result in a struct
+lock initialisation mutex
+create forks tab;
+create philo tab;
+
+
+get time of simulation start;
+unlock initialisation mutex,
+
+
+
+
+
+
+
+parser :
+if 4 < nb_args < 6 ; error wrong param;
+for each param : (no loop. just one function called 4-5 times)
+	check if value is valid (is an int, positive, not to big...).
+	add value to corresponding param
+	if nb_args = 5 
+		check and add param nb_meal
+	else
+		nb_meal = 0
+
+
