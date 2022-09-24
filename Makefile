@@ -1,4 +1,9 @@
-SRCS	=	
+SRCS	=	philosopher.c \
+			parsing.c \
+			error.c \
+			${LIB}
+
+LIB		=	not_libft1.c
 
 OBJS	=	${SRCS:%.c=%.o}
 
@@ -6,7 +11,7 @@ CC		=	gcc
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-NAME	=	pipex
+NAME	=	philosopher
 
 #rules    -------------------------------------------------------------    rules
 
@@ -18,14 +23,10 @@ ${NAME}: ${OBJS}
 
 clean:
 	@rm -rf ${OBJS} ${NAME}.dSYM ${BOBJS} test
-	@make -s -C ./lib/ft_printf clean
-	@make -s -C ./lib/libft clean
 	@echo "\033[1;31mobject files removed\033[0m"
 
 fclean:		clean
 	@rm -f ${NAME} generator bonus/checker
-	@make -s -C ./lib/ft_printf fclean
-	@make -s -C ./lib/libft fclean
 	@echo "\033[1;33m${NAME} file removed\033[0m"
 
 re:		fclean all
