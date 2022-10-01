@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:45:02 by tmongell          #+#    #+#             */
-/*   Updated: 2022/09/26 16:36:37 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:46:24 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 #define ERR_ARG_COUNT	-1	//to many or not enough arguments
 #define ERR_ARG_NAN		-2	//one argument contain non digit numbers
 #define ERR_ARG_NEG		-4	//one argument is a negative number
-#define ERR_ARG_NULL	-8	//one argument has a value of 0;
+#define ERR_ARG_NULL	-8	//one argument has a value of 0
+#define ERR_MANY_PHILO	-16	//more than [MAX_PHILO] (=200) philosophers
 
 //tech error
-#define ERR_MALLOC		-16	//a malloc call failed to alocate memory
+#define ERR_MALLOC		-32	//a malloc call failed to alocate memory

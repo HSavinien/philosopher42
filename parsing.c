@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:20:51 by tmongell          #+#    #+#             */
-/*   Updated: 2022/09/26 20:22:17 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:58:00 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,19 @@ int	get_arg(char *arg_str)
 	return (arg_value);
 }
 
-t_param error_argc(void)
+t_shared error_argc(void)
 {
-	t_param ret;
+	t_shared ret;
 	ret.error_code = ERR_ARG_COUNT;
 	return (ret);
 }
 
-void	check_error_argv(t_param *param)
+void	check_error_argv(t_shared *param)
 {
 	if (param->nb_philo < 0)
 		param->error_code = param->nb_philo;
+	if (param->nb_philo > MAX_PHILO)
+		param->error_code = ERR_MANY_PHILO;
 	if (param->die_time < 0)
 		param->error_code = param->die_time;
 	if (param->eat_time < 0)
@@ -57,9 +59,9 @@ void	check_error_argv(t_param *param)
 
 //this function check that the args are correct, 
 //and store them in a struct for easy use.
-t_param	do_parsing(int ac, char **av)
+t_shared	do_parsing(int ac, char **av)
 {
-	t_param	param;
+	t_shared	param;
 
 	if (ac < 5 || ac > 6)
 		return (error_argc());
