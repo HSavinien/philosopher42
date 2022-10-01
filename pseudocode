@@ -1,27 +1,31 @@
-main code :
-parse user entry. store result in a struct
-lock initialisation mutex
-create forks tab;
-create philo tab;
-
-
-get time of simulation start;
-unlock initialisation mutex,
-
-
-
-
+philo thread code :
+	finish initialising struct
+	endless loop (or until max meal)
+		take first fork (say it)
+		take second fork (say it)
+		eat;
+		drop both fork;
+		sleep (say it);
+		think (say it);
+	loop back
+	say philo as eaten max meal;
 
 
 
-parser :
-if 4 < nb_args < 6 ; error wrong param;
-for each param : (no loop. just one function called 4-5 times)
-	check if value is valid (is an int, positive, not to big...).
-	add value to corresponding param
-	if nb_args = 5 
-		check and add param nb_meal
-	else
-		nb_meal = 0
+death thread code :
+	if shared.dead_philo
+		lock outlock mutex;
+		find which philo is dead
+		print death message
+	else if 
+		return
 
+hunger thread : 
+	sleep 1 ms
+	general time ++;
+	for each philo
+		hunger ++
+		if hunger > die_time (&& max meal not reached)
+			kill philo;
+	loop back to top;
 
