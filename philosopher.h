@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:30:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/01 19:52:55 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:38:29 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_philo {
 	int			id;
 	int			dead;
 	int			nb_meal;
-	int			last_meal; //or hunger, same thing basicaly
+	int			hunger; //time since last meal
 	
 }	t_philo;
 
@@ -61,8 +61,8 @@ typedef struct s_shared {
 }	t_shared;
 
 typedef struct s_thread_arg {
-t_shared	shared;
-t_philo		philo;
+t_shared	*shared;
+t_philo		*philo;
 }		t_thread_arg;
 
 /*prototypes--------------------------------------------------------prototypes*/
@@ -74,13 +74,22 @@ t_shared	do_parsing(int ac, char **av);
 t_philo	*create_all_philo(t_shared shared);
 t_philo	*create_one_philo(t_shared shared, int index);
 
-//error management
-int		error_args(int err_code);
-int		error_msg(char *msg, int err_code);
+//utils
+void	accurate_sleep(int time);	//time in ms
+
+//threads routines
+
+//thread subfunctions
+
+//actions
 
 //lib function
 int	ft_atoi(const char *str);
 int ft_isdigit(int c);
 int ft_isspace(int c);
+
+//error management
+int		error_args(int err_code);
+int		error_msg(char *msg, int err_code);
 
 #endif
