@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:30:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/03 16:38:29 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/03 20:42:38 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_shared {
 	pthread_mutex_t	forks[MAX_PHILO];
 	pthread_mutex_t init_lock;
 	int	start_time;
-	int	simulation_age;
+	int	simul_age;
 }	t_shared;
 
 typedef struct s_thread_arg {
@@ -79,9 +79,12 @@ void	accurate_sleep(int time);	//time in ms
 
 //threads routines
 
-//thread subfunctions
-
 //actions
+void	action_take_forks(int philo_num, t_shared *shared);
+void	action_eat(int philo_num, t_shared *shared);
+void	action_sleep(int philo_num, t_shared *shared);
+void	action_think(int philo_num, t_shared *shared);
+void	action_die(int philo_num, t_shared *shared);
 
 //lib function
 int	ft_atoi(const char *str);
