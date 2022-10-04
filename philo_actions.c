@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 19:23:41 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/03 20:39:54 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:27:17 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	action_eat(int philo_num, t_shared *shared)
 	pthread_mutex_lock(shared.outlock);
 	printf("[%d] philo %d is eating\n", shared->simul_age, philo_num);
 	pthread_mutex_unlock(shared.outlock);
+	shared->philos[philo_num].hunger = 0;
+	shared->philos[philo_num].nb_meal++
 	//sleep eat_time millisecond
 	accurate_sleep(shared->eat_time);
 	//unlock first fork

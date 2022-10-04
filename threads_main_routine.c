@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:46:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/03 16:49:33 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:11:34 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	*philo_routine(void *args)
 
 	shared = args.shared;
 	philo = args.philo;
-	pthread_mutex_lock(shared->init_lock);
-	pthread_mutex_unlock(shared->init_lock);
+	wait_init();
 	while (!last_meal_eaten && !shared->dead_philo)
 	{
 		action_take_forks(philo->id, shared);
@@ -61,6 +60,8 @@ void	age_all_philo(t_shared *shared)
 void	*hunger_routine(void *shared)
 {
 	int	i;
+	
+	wait_init();
 	while (shared.dead_philo == 0)
 	{
 		accurate_sleep(1);
@@ -74,6 +75,7 @@ void	*death_routine(void	*shared)
 {
 	int	i;
 
+	wait_init();
 	while (shared.dead == 0)
 		sleep(TIME_TIC);
 	pthread_mutex_lock(shared.outlock);

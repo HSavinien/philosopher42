@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:30:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/03 20:42:38 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:17:49 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ t_philo	*create_one_philo(t_shared shared, int index);
 void	accurate_sleep(int time);	//time in ms
 
 //threads routines
+void	*philo_routine(void *args);
+void	*hunger_routine(void *shared);
+void	*death_routine(void *shared);
 
 //actions
 void	action_take_forks(int philo_num, t_shared *shared);
