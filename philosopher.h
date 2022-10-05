@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:30:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/04 15:17:49 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:02:35 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_philo {
 	
 }	t_philo;
 
-//should be called "shared instead. will change in due time"
 typedef struct s_shared {
 	int	nb_philo;
 	int	die_time;
@@ -56,7 +55,6 @@ typedef struct s_shared {
 	pthread_mutex_t outlock;//locking access to stdout
 	pthread_mutex_t	forks[MAX_PHILO];
 	pthread_mutex_t init_lock;
-	int	start_time;
 	int	simul_age;
 }	t_shared;
 
@@ -76,6 +74,7 @@ t_philo	*create_one_philo(t_shared shared, int index);
 
 //utils
 void	accurate_sleep(int time);	//time in ms
+void	wait_init(void);
 
 //threads routines
 void	*philo_routine(void *args);

@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:11:46 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/04 18:43:46 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:02:03 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,41 @@ int	wait_init(void)
 	pthread_mutex_unlock(shared->init_lock);
 }
 
-//convert the struct we got from gettimeofday into an int.
-//this int is the number of us since the start of the simulation.
-int	time_to_int(struct timeval basetime)
+//function that compare two time, as returned from get_time_of_day.
+//return : 
+//	an integer greater than 0 if time 1 is after time 2 ; 
+//	an interger smaller than 0 if time 1 is before time 2;
+//	zero if the two time are the same;
+int	timecmp(const struct timeval time1, const struct timeval time2)
 {
-
+	if (time1.tv_sec != time2.tv_sec)
+		return (time1.tv_sec - time2.tv_sec);
+	return (time1.tv_usec - time2.tv_usec);
 }
 
-//basic sleep (or usleep) function is not accurate :
-//usleep(1000) will sleep AT LEAST 1000 micro second, but it can be more
-//this function aim to correct that.
-//the duration is in ms, not in micro seconds.
+struct timeval	get_wakeup_date(struct timeval start, int duration)
+{
+	struct timeval wakeup;
+
+	duration *=1000; //convert ms to us
+	if (start + duration >= 1000000)
+		wakeup.tv_sec = (duration/1000000)
+	wakeup.tv_usec += (duration % 1000000);
+	return (wakeup);
+}
+
+//this function aim the present a more accurate alternative 
+//to the native sleep/usleep function
 void	accurate_sleep(int duration)
 {
-	int		awakening_time;
-	t_time	start_time;
+	struct timeval start_time;
+	struct timeval end_time;
+	//get curent time.
 	
-	
-	//while current time != awakening date
-		//sleep (very short time)
+	gettimeofday(&start_time, NULL)
+	//calculate time to end of sleep
+	end_time = get_wakeup_date(start_time, duration);
+	//while current time < goal_time (funcion time_comp)
+	while (timecmp(gettimeofday, end_time) < 0)
+		usleep(TIME_TIC);
 }
