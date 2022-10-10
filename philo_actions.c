@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 19:23:41 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/04 14:27:17 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:28:17 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ void	action_take_forks(int philo_num, t_shared *shared)
 	pthread_mutex_lock(shared->forks[philo_num]);
 	//say it
 	pthread_mutex_lock(shared.outlock);
-	printf("[%d] philo %d has taken a fork\n", shared->simul_age, philo_num);
+	printf(FORM_FORK ACT_FORK CLEAR, shared->simul_age, philo_num);
 	pthread_mutex_unlock(shared.outlock);
 	//take second fork (if last philo, next fork is fork 0)
 	pthread_mutex_lock(shared->forks[(philo_num + 1) % shared->nb_philo]);
 	//say it
 	pthread_mutex_lock(shared.outlock);
-	printf("[%d] philo %d has taken a fork\n", shared->simul_age, philo_num);
+	printf(FORM_FORK ACT_FORK CLEAR, shared->simul_age, philo_num);
 	pthread_mutex_unlock(shared.outlock);
 }
 void	action_eat(int philo_num, t_shared *shared)
 {
 	//say he's eating
 	pthread_mutex_lock(shared.outlock);
-	printf("[%d] philo %d is eating\n", shared->simul_age, philo_num);
+	printf(FORM_EAT ACT_EAT CLEAR, shared->simul_age, philo_num);
 	pthread_mutex_unlock(shared.outlock);
 	shared->philos[philo_num].hunger = 0;
 	shared->philos[philo_num].nb_meal++
@@ -46,7 +46,7 @@ void	action_sleep(int philo_num, t_shared *shared)
 {
 	//say he's sleeping
 	pthread_mutex_lock(shared.outlock);
-	printf("[%d] philo %d is sleeping\n", shared->simul_age, philo_num);
+	printf(FORM_SLEEP ACT_SLEEP CLEAR, shared->simul_age, philo_num);
 	pthread_mutex_unlock(shared.outlock);
 	//sleep sleep_time second
 	accurate_sleep(sleep_time)
@@ -55,7 +55,7 @@ void	action_think(int philo_num, t_shared *shared)
 {
 	//say he's thinking
 	pthread_mutex_lock(shared.outlock);
-	printf("[%d] philo %d is thinking\n", shared->simul_age, philo_num);
+	printf(FORM_THINK ACT_THINK CLEAR, shared->simul_age, philo_num);
 	pthread_mutex_unlock(shared.outlock);
 }
 void	action_die(int philo_num, t_shared *shared)

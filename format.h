@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 19:36:44 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/01 20:22:55 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:30:56 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,13 @@
 # define FORM_DIE "\033[31m"	//red
 # define FORM_END "\033[1;4;32m"// bald, underlined, green
 
-#define FORMAT_H
+//log msg
+# define ACT_FORK	"[%d] Philo %d has taken a fork\n"
+# define ACT_EAT	"[%d] philo %d is eating\n"
+# define ACT_SLEEP	"[%d] philo %d is sleeping\n"
+# define ACT_THINK	"[%d] philo %d is thinking\n"
+# define ACT_DIE	"[%d] philo %d died.\n"
+# define ACT_END	"[%d] philo %d have finished eating.\n"
+# define ACT_DISTRESS "[%d] Someone died! Philo %d is too distressed to eat.\n"
+
+#endif

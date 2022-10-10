@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:45:02 by tmongell          #+#    #+#             */
-/*   Updated: 2022/09/29 16:46:24 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/06 21:33:28 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,5 @@
 
 //tech error
 #define ERR_MALLOC		-32	//a malloc call failed to alocate memory
+#define	ERR_MUTEX_INIT	-64	//a mutex init failed
+#define ERR_CREATE		-128 //could not create a thread;

@@ -6,13 +6,18 @@
 #    By: tmongell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 18:32:48 by tmongell          #+#    #+#              #
-#    Updated: 2022/09/26 18:32:53 by tmongell         ###   ########.fr        #
+#    Updated: 2022/10/06 21:37:04 by tmongell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	philosopher.c \
+SRCS	=	error.c \
+			initialisation.c \
+			not_libft1.c \
 			parsing.c \
-			error.c \
+			philo_actions.c \
+			philosopher.c \
+			threads_main_routine.c \
+			utils.c \
 			${LIB}
 
 LIB		=	not_libft1.c

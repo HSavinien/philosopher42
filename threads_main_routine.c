@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:46:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/04 15:11:34 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:31:18 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void	*philo_routine(void *args)
 	t_philo		*philo;
 	int			last_meal_eaten;
 
-	shared = args.shared;
-	philo = args.philo;
+	shared = args->shared;
+	philo = args->philo;
+	free args;
 	wait_init();
 	while (!last_meal_eaten && !shared->dead_philo)
 	{
@@ -32,11 +33,9 @@ void	*philo_routine(void *args)
 	}
 	pthread_mutex_lock(shared->outlock);
 	if (shared->nb_meal > 0 && philo->nb_meal >= shared.nb_meal)
-		printf(FORM_END "[%d] philo %d have finished eating.\n" CLEAR,
-			shared->simulation_age, philo->id);
-	else
-		printf("[%d] someone died! Philo %d is too distressed to eat.\n",
-			shared->simulation_age, philo->id);
+		printf(FORM_END ACT_END CLEAR, shared->simulation_age, philo->id);
+	else if (!philo->dead)
+		printf(ACT_DISTRESS, shared->simulation_age, philo->id);
 	pthread_mutex_unlock(shared.outlock);
 	return (NULL);
 }
@@ -83,7 +82,7 @@ void	*death_routine(void	*shared)
 	while (shared.philos[i])
 	{
 		if (shared.philos[i].dead)
-			printf(FORM_DIE "[%d] philo %d died.\n" CLEAR);
+			printf(FORM_DIE ACT_DIE CLEAR);
 		i ++;
 	}
 	return (NULL);

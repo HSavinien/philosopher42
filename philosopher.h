@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:30:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/05 20:02:35 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/06 21:42:27 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,20 @@ typedef struct s_philo {
 }	t_philo;
 
 typedef struct s_shared {
-	int	nb_philo;
-	int	die_time;
-	int	eat_time;
-	int	sleep_time;
-	int	nb_meal;
-	int	dead_philo;
-	int	error_code;
-	t_philo	philos[MAX_PHILO];
+	int				nb_philo;
+	int				die_time;
+	int				eat_time;
+	int				sleep_time;
+	int				nb_meal;
+	int				dead_philo;
+	int				error_code;
+	int				simul_age;
+	t_philo			philos[MAX_PHILO];
+	pthread_t		hunger;
+	pthread_t		death;
 	pthread_mutex_t outlock;//locking access to stdout
 	pthread_mutex_t	forks[MAX_PHILO];
 	pthread_mutex_t init_lock;
-	int	simul_age;
 }	t_shared;
 
 typedef struct s_thread_arg {
@@ -69,8 +71,10 @@ t_philo		*philo;
 t_shared	do_parsing(int ac, char **av);
 
 //initialisation
-t_philo	*create_all_philo(t_shared shared);
-t_philo	*create_one_philo(t_shared shared, int index);
+int		create_all_philo(t_shared *shared);
+int		create_one_philo(t_shared *shared, int index);
+int		init_values(t_shared *shared);
+int		init_supervisor(t_shared *shared);
 
 //utils
 void	accurate_sleep(int time);	//time in ms
@@ -89,12 +93,12 @@ void	action_think(int philo_num, t_shared *shared);
 void	action_die(int philo_num, t_shared *shared);
 
 //lib function
-int	ft_atoi(const char *str);
-int ft_isdigit(int c);
-int ft_isspace(int c);
+int		ft_atoi(const char *str);
+int 	ft_isdigit(int c);
+int		ft_isspace(int c);
 
 //error management
 int		error_args(int err_code);
-int		error_msg(char *msg, int err_code);
+int		error_msg(char *msg, int err_code, t_shared *shared);
 
 #endif

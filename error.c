@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:15:00 by tmongell          #+#    #+#             */
-/*   Updated: 2022/09/26 20:26:12 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/06 17:14:57 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int	error_args(int err_code)
 	return (-(err_code));
 }
 
-int	error_msg(char *msg, int err_code)
+int	error_msg(char *msg, int err_code, t_shared *shared)
 {
 	printf("Error %d\n%s\n", -err_code, msg);
+	if (shared)
+		shared->error_code = err_code;
 	return (-err_code);
 }
