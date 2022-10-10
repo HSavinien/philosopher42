@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:30:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/06 21:42:27 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:04:17 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ void	accurate_sleep(int time);	//time in ms
 void	wait_init(void);
 
 //threads routines
-void	*philo_routine(void *args);
-void	*hunger_routine(void *shared);
-void	*death_routine(void *shared);
+void	*philo_routine(t_thread_arg *args);
+void	*hunger_routine(t_shared *shared);
+void	*death_routine(t_shared *shared);
 
 //actions
 void	action_take_forks(int philo_num, t_shared *shared);
