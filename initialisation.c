@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:35:29 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/10 16:22:32 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:11:12 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	create_one_philo(t_shared *shared, int index)
 	return (0);
 }
 
-int	create_all_philo(t_shared  *shared)
+int	create_all_philo(t_shared *shared)
 {
 	int	i;
 
@@ -73,12 +73,11 @@ int	init_values(t_shared *shared)
 	if (error)
 		return (error_msg("bad mutex initialisation", ERR_MUTEX_INIT, shared));
 	return (0);
-
 }
 
 int	init_supervisor(t_shared *shared)
 {
-	int error;
+	int	error;
 
 	error = 0;
 	error += pthread_create(&(shared->hunger), NULL, hunger_routine, shared);

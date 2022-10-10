@@ -6,13 +6,13 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:58 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/10 16:58:42 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:15:52 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int main (int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_shared	shared;
 	//do parsing
@@ -25,11 +25,11 @@ int main (int ac, char **av)
 	//lock initialisation mutex
 	pthread_mutex_lock(&(shared.init_lock));
 	//create all philo
-	if(create_all_philo(& shared))
+	if (create_all_philo(& shared))
 		return (-shared.error_code);//error management might change
 	//create hunger thread (incremente hunger of philo, kill them when needed)
 	//create supervisor
-	if(init_supervisor(&shared))
+	if (init_supervisor(&shared))
 		return (-shared.error_code);//error management might change
 	//unlock initialisation thread
 	pthread_mutex_unlock(&(shared.init_lock));

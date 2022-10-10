@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:11:46 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/10 18:23:06 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:00:47 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	timecmp(const struct timeval time1, const struct timeval time2)
 
 struct timeval	get_wakeup_date(struct timeval start, int duration)
 {
-	struct timeval wakeup;
+	struct timeval	wakeup;
 
-	duration *=1000; //convert ms to us
+	duration *= 1000; //convert ms to us
 	if (start.tv_usec + duration >= 1000000)
-		wakeup.tv_sec = (duration/1000000);
+		wakeup.tv_sec = (duration / 1000000);
 	wakeup.tv_usec += (duration % 1000000);
 	return (wakeup);
 }
@@ -45,9 +45,9 @@ struct timeval	get_wakeup_date(struct timeval start, int duration)
 //to the native sleep/usleep function
 void	accurate_sleep(int duration)
 {
-	struct timeval start_time;
-	struct timeval now_time;
-	struct timeval end_time;
+	struct timeval	start_time;
+	struct timeval	now_time;
+	struct timeval	end_time;
 	//get curent time.
 	gettimeofday(&start_time, NULL);
 	//calculate time to end of sleep

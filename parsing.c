@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:20:51 by tmongell          #+#    #+#             */
-/*   Updated: 2022/09/28 15:58:00 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:14:40 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	get_arg(char *arg_str)
 {
-	int arg_value;
+	int	arg_value;
 	int	i;
 
 	i = 0;
@@ -34,9 +34,10 @@ int	get_arg(char *arg_str)
 	return (arg_value);
 }
 
-t_shared error_argc(void)
+t_shared	error_argc(void)
 {
-	t_shared ret;
+	t_shared	ret;
+
 	ret.error_code = ERR_ARG_COUNT;
 	return (ret);
 }
@@ -50,7 +51,7 @@ void	check_error_argv(t_shared *param)
 	if (param->die_time < 0)
 		param->error_code = param->die_time;
 	if (param->eat_time < 0)
-		param->error_code= param->eat_time;
+		param->error_code = param->eat_time;
 	if (param->sleep_time < 0)
 		param->error_code = param->sleep_time;
 	if (param->nb_meal < 0)
@@ -75,6 +76,6 @@ t_shared	do_parsing(int ac, char **av)
 		param.nb_meal = 0;
 	param.dead_philo = 0;
 	param.error_code = 0;
-		check_error_argv(&param);
+	check_error_argv(&param);
 	return (param);
 }

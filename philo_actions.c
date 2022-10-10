@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 19:23:41 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/10 16:45:44 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:15:19 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	action_take_forks(int philo_num, t_shared *shared)
 	printf(FORM_FORK ACT_FORK CLEAR, shared->simul_age, philo_num);
 	pthread_mutex_unlock(&shared->outlock);
 }
+
 void	action_eat(int philo_num, t_shared *shared)
 {
 	//say he's eating
@@ -42,6 +43,7 @@ void	action_eat(int philo_num, t_shared *shared)
 	//unlock second fork
 	pthread_mutex_unlock(&(shared->forks[(philo_num + 1) % shared->nb_philo]));
 }
+
 void	action_sleep(int philo_num, t_shared *shared)
 {
 	//say he's sleeping
@@ -51,6 +53,7 @@ void	action_sleep(int philo_num, t_shared *shared)
 	//sleep sleep_time second
 	accurate_sleep(shared->sleep_time);
 }
+
 void	action_think(int philo_num, t_shared *shared)
 {
 	//say he's thinking
@@ -58,6 +61,7 @@ void	action_think(int philo_num, t_shared *shared)
 	printf(FORM_THINK ACT_THINK CLEAR, shared->simul_age, philo_num);
 	pthread_mutex_unlock(&(shared->outlock));
 }
+
 void	action_die(int philo_num, t_shared *shared)
 {
 	//increment dead philo counter

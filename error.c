@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:15:00 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/06 17:14:57 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:10:12 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	error_args(int err_code)
 {
-		printf("Error \033[1m%d\033[0m : arguments\nusage : "
-			"philo <nb_philo> <die_time> <eat_time> <sleep_time> [max_meal]\n",
-			-err_code);
+	printf("Error \033[1m%d\033[0m : arguments\nusage : "
+		"philo <nb_philo> <die_time> <eat_time> <sleep_time> [max_meal]\n",
+		-err_code);
 	return (-(err_code));
 }
 
