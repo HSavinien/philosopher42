@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:30:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/10 17:04:17 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:25:23 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ int		init_supervisor(t_shared *shared);
 
 //utils
 void	accurate_sleep(int time);	//time in ms
-void	wait_init(void);
+void	wait_init(t_shared *shared);
 
 //threads routines
-void	*philo_routine(t_thread_arg *args);
-void	*hunger_routine(t_shared *shared);
-void	*death_routine(t_shared *shared);
+void	*philo_routine(void *args);
+void	*hunger_routine(void *shared);
+void	*death_routine(void *shared);
 
 //actions
 void	action_take_forks(int philo_num, t_shared *shared);

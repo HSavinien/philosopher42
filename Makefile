@@ -6,21 +6,18 @@
 #    By: tmongell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 18:32:48 by tmongell          #+#    #+#              #
-#    Updated: 2022/10/06 21:37:04 by tmongell         ###   ########.fr        #
+#    Updated: 2022/10/10 18:29:59 by tmongell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	error.c \
 			initialisation.c \
-			not_libft1.c \
 			parsing.c \
 			philo_actions.c \
 			philosopher.c \
 			threads_main_routine.c \
 			utils.c \
-			${LIB}
-
-LIB		=	not_libft1.c
+			lib.c
 
 OBJS	=	${SRCS:%.c=%.o}
 
@@ -36,7 +33,7 @@ all:		${NAME}
 
 ${NAME}: ${OBJS}
 	@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
-	@echo "\033[1;32mcode compiled succesfully\033[0m"
+	@echo "\033[1;32m\ncode compiled succesfully\033[0m\n"
 
 clean:
 	@rm -rf ${OBJS} ${NAME}.dSYM ${BOBJS} test
