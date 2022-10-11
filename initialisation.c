@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:35:29 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/10 20:11:12 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:31:32 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	create_one_philo(t_shared *shared, int index)
 	philo->hunger = 0;
 	philo->nb_meal = 0;
 	philo->dead = 0;
+	philo->finished = 0;
 	//allocate t_arg struct
 	args = malloc(sizeof (t_thread_arg));
 	if (!args)
@@ -63,6 +64,7 @@ int	init_values(t_shared *shared)
 	//set dead_philo to 0
 	//set simul_age to 0
 	shared->dead_philo = 0;
+	shared->finished = 0;
 	shared->simul_age = 0;
 	//init outlock and init_lock
 	error += pthread_mutex_init(&(shared->outlock), NULL);

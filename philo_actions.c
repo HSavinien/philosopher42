@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 19:23:41 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/10 20:15:19 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:41:21 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,5 @@ void	action_die(int philo_num, t_shared *shared)
 	shared->dead_philo ++;
 	//set philo->dead as true
 	shared->philos[philo_num].dead = 1;
+	shared->philos[philo_num].finished = 1;
 }

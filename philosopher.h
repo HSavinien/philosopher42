@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:30:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/10 20:09:12 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:30:04 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_philo {
 	pthread_t	thread_id;
 	int			id;
 	int			dead;
+	int			finished;
 	int			nb_meal;
 	int			hunger;
 }	t_philo;
@@ -48,6 +49,7 @@ typedef struct s_shared {
 	int				sleep_time;
 	int				nb_meal;
 	int				dead_philo;
+	int				finished;
 	int				error_code;
 	int				simul_age;
 	t_philo			philos[MAX_PHILO];
