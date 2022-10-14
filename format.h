@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 19:36:44 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/14 18:15:45 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:17:32 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 #ifndef FORMAT_H
 # define FORMAT_H
 
-
-#ifndef STRICT_SYNTAX
+# ifndef STRICT_SYNTAX
 //general
 #  define CLEAR "\033[0m"
 

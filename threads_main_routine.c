@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:46:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/14 18:14:20 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:20:48 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	action_loop(t_philo *philo, t_shared *shared)
 {
 	action_take_forks(philo->id, shared);
-	action_eat(philo->id, shared);//eat also drop forks
+	action_eat(philo->id, shared);
 	action_sleep(philo->id, shared);
 	action_think(philo->id, shared);
 	if (shared->nb_meal > 0 && philo->nb_meal >= shared->nb_meal)
@@ -35,7 +35,7 @@ void	*philo_routine(void *args)
 	wait_init(shared);
 	last_meal_eaten = 0;
 	action_think(philo->id, shared);
-	usleep((philo->id % 2) *100);
+	usleep((philo->id % 2) * 100);
 	if (philo->id == shared->nb_philo && shared->nb_philo % 2)
 		accurate_sleep(100);
 	while (!last_meal_eaten && !shared->dead_philo)
@@ -55,7 +55,7 @@ void	age_all_philo(t_shared *shared)
 	{
 		current_philo = &(shared->philos[i]);
 		if (current_philo->finished)
-			continue;
+			continue ;
 		if (current_philo->hunger > shared->die_time)
 			action_die(i, shared);
 		else
@@ -88,7 +88,7 @@ void	*death_routine(void	*arg)
 	wait_init(shared);
 	while (shared->dead_philo == 0 && shared->finished < shared->nb_philo)
 		usleep(500);
-	pthread_mutex_lock(&(shared->outlock));//volutarily never unlocked
+	pthread_mutex_lock(&(shared->outlock));
 	i = 0;
 	while (i < shared->nb_philo)
 	{
