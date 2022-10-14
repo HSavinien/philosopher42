@@ -6,7 +6,7 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:46:10 by tmongell          #+#    #+#             */
-/*   Updated: 2022/10/12 18:32:54 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:14:20 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,13 @@ void	*philo_routine(void *args)
 	wait_init(shared);
 	last_meal_eaten = 0;
 	action_think(philo->id, shared);
-	usleep(philo->id *1000);
+	usleep((philo->id % 2) *100);
 	if (philo->id == shared->nb_philo && shared->nb_philo % 2)
 		accurate_sleep(100);
 	while (!last_meal_eaten && !shared->dead_philo)
 		last_meal_eaten = action_loop(philo, shared);
 	philo->finished = 1;
 	shared->finished ++;
-	pthread_mutex_lock(&(shared->outlock));
-	if (last_meal_eaten)
-		printf(FORM_END ACT_END CLEAR, shared->simul_age, philo->id);
-	pthread_mutex_unlock(&(shared->outlock));
 	return (NULL);
 }
 

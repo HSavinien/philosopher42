@@ -6,7 +6,7 @@
 #    By: tmongell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 18:32:48 by tmongell          #+#    #+#              #
-#    Updated: 2022/10/10 18:29:59 by tmongell         ###   ########.fr        #
+#    Updated: 2022/10/14 18:13:09 by tmongell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ OBJS	=	${SRCS:%.c=%.o}
 CC		=	gcc
 
 CFLAGS	=	-Wall -Wextra -Werror
+
 
 NAME	=	philosopher
 
@@ -50,5 +51,9 @@ debug:	library
 
 sanitize:	library
 	@${CC} ${CFLAGS} ${LIB} ${SRCS} -o ${NAME}-sanitize -fsanitize=address
+
+strict:
+	@${CC} ${CFLAGS} -D STRICT_SYNTAX -o ${NAME} ${SRCS}
+	@echo "\033[1;32m\ncode compiled with output corresponding to the subject\033[0m\n"
 
 .PHONY:		all clean fclean re debug sanitize bonus
