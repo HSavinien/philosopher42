@@ -6,7 +6,7 @@
 #    By: tmongell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 18:32:48 by tmongell          #+#    #+#              #
-#    Updated: 2022/10/14 18:13:09 by tmongell         ###   ########.fr        #
+#    Updated: 2023/02/28 22:46:34 by tmongell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,12 +45,6 @@ fclean:		clean
 	@echo "\033[1;33m${NAME} file removed\033[0m"
 
 re:		fclean all
-
-debug:	library
-	@${CC} ${CFLAGS} ${LIB} ${SRCS} -o ${NAME}-debug -g
-
-sanitize:	library
-	@${CC} ${CFLAGS} ${LIB} ${SRCS} -o ${NAME}-sanitize -fsanitize=address
 
 strict:
 	@${CC} ${CFLAGS} -D STRICT_SYNTAX -o ${NAME} ${SRCS}
